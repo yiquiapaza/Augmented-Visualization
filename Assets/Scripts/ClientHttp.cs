@@ -28,6 +28,7 @@ public class ClientHttp : MonoBehaviour
             if (www.isNetworkError)
             {
                 Debug.Log("Error server");
+                ExampleSphere.position = gameObject.transform.position;
                 ExampleSphere.gameObject.SetActive(true);
                 ExampleSphere.GetComponent<Renderer>().material.color = Color.red;
             }
@@ -36,12 +37,14 @@ public class ClientHttp : MonoBehaviour
                 if(www.isDone)
                 {
                     Debug.Log("Is Done!!");
+                    ExampleSphere.position = gameObject.transform.position;
                     ExampleSphere.gameObject.SetActive(true);
                     ExampleSphere.GetComponent<Renderer>().material.color = Color.blue;
                 }
                 else
                 {
                     Debug.Log("Error with Data");
+                    ExampleSphere.position = gameObject.transform.position;
                     ExampleSphere.gameObject.SetActive(true);
                     ExampleSphere.GetComponent<Renderer>().material.color = Color.yellow;
                 }
