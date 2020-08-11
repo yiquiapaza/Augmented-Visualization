@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -9,9 +11,14 @@ public class ClientHttp : MonoBehaviour
     public string url;
     [SerializeField]
     public Transform ExampleSphere;
+
+    [SerializeField]
+    public string jsonString;
+
     // Start is called before the first frame update
     void Start()
     {
+        GetDataJson(jsonString);
         StartCoroutine(Get(url));
     }
     // Update is called once per frame
@@ -49,6 +56,22 @@ public class ClientHttp : MonoBehaviour
                     ExampleSphere.GetComponent<Renderer>().material.color = Color.yellow;
                 }
             }
+        }
+    }
+
+   void GetDataJson(string jsonString)
+    {
+        if (File.Exists(Application.dataPath + jsonString))
+        {
+            string dataDir = Application.dataPath + jsonString;
+            string dataContent = File.ReadAllText(dataDir);
+            Debug.Log(dataContent);
+            CoutriesCollection outData = JsonUtility.FromJson<CoutriesCollection>(dataContent);
+            Debug.Log(outData.coutriesCollection[0].name);
+        }
+        else
+        {
+            Debug.Log("No esta bien la ubicacion");
         }
     }
 }
