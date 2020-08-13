@@ -18,7 +18,6 @@ public class ClientHttp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetDataJson(jsonString);
         StartCoroutine(Get(url));
     }
     // Update is called once per frame
@@ -58,20 +57,5 @@ public class ClientHttp : MonoBehaviour
             }
         }
     }
-
-   void GetDataJson(string jsonString)
-    {
-        if (File.Exists(Application.dataPath + jsonString))
-        {
-            string dataDir = Application.dataPath + jsonString;
-            string dataContent = File.ReadAllText(dataDir);
-            Debug.Log(dataContent);
-            CoutriesCollection outData = JsonUtility.FromJson<CoutriesCollection>(dataContent);
-            Debug.Log(outData.coutriesCollection[0].name);
-        }
-        else
-        {
-            Debug.Log("No esta bien la ubicacion");
-        }
-    }
+   
 }
