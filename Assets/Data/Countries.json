@@ -5,7 +5,7 @@
 			"region": "Latin America and the Caribbean",
 			"country_code": 76,
 			"name": "Brazil",
-			"color": "#ffff4d",
+			"color": 1,
 			"years":
 			[
 				{
@@ -20,7 +20,7 @@
 			"region": "Latin America and the Caribbean",
 			"country_code": 32,
 			"name": "Argentina",
-			"color": "#ffff4d",
+			"color": 2,
 			"years":
 			[
 				{
@@ -35,7 +35,7 @@
 			"region": "Latin America and the Caribbean",
 			"country_code": 604,
 			"name": "Peru",
-			"color": "#ffff4d",
+			"color": 3,
 			"years":
 			[
 				{
@@ -50,7 +50,7 @@
 			"region": "Europe and Northern America",
 			"country_code": 840,
 			"name": "United States of America",
-			"color": "#ffff4d",
+			"color": 4,
 			"years":
 			[
 				{
@@ -65,7 +65,7 @@
 			"region": "Europe and Northern America",
 			"country_code": 124,
 			"name": "Canada",
-			"color": "#ffff4d",
+			"color": 5,
 			"years":
 			[
 				{

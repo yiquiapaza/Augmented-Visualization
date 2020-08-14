@@ -12,8 +12,6 @@ public class ClientHttp : MonoBehaviour
     [SerializeField]
     public Transform ExampleSphere;
 
-    [SerializeField]
-    public string jsonString;
 
     // Start is called before the first frame update
     void Start()
