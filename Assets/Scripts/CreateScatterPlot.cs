@@ -27,32 +27,7 @@ public class CreateScatterPlot : MonoBehaviour
 
     void GetObjects()
     {
-        if (Country.CreateStaticData().Count != 0)
-        {
-            foreach (Country country in Country.CreateStaticData())
-            {
-
-                Debug.Log(country.name);
-                Transform obj = Instantiate(
-                    Sphere,
-                    new Vector3(
-                        gameObject.transform.position.x + (country.years[0].life_expetancy / 100),
-                        gameObject.transform.position.y + (country.years[0].infant_mortality_rate / 200),
-                        gameObject.transform.position.z + 0.0f),
-                    Quaternion.identity);                
-                obj.gameObject.SetActive(true);
-                obj.localScale = new Vector3(
-                    country.years[0].population / (RangeSphere() * 10), 
-                    country.years[0].population / (RangeSphere() * 10), 
-                    country.years[0].population / (RangeSphere() * 10));
-                obj.gameObject.GetComponent<Renderer>().material.color = GetColor(country.color);
-                //Debug.Log(country.years[0].population / (RangeSphere() * 10));
-            }
-        }
-        else
-        {
-            Debug.Log("Nose pudo cagar");
-        }        
+               
     }
     private Color GetColor(int num)
     {
@@ -81,16 +56,5 @@ public class CreateScatterPlot : MonoBehaviour
 
         return color;
     }
-
-    private float RangeSphere()
-    {
-        List<float> listOutData = new List<float>();
-
-        foreach (Country country in Country.CreateStaticData())
-        {
-            listOutData.Add(country.years.Select(i => i.population).Max());
-        }
-
-        return listOutData.Max();
-    }
+       
 }

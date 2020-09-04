@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine.Networking;
 
 public class ClientHttp : MonoBehaviour
@@ -16,14 +18,15 @@ public class ClientHttp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Get(url));
+        //Debug.Log(CountryList.CreateFromJson(url));
+        //StartCoroutine(Get(url));
     }
     // Update is called once per frame
     void Update()
     {
-        
+        StartCoroutine(Get(url));
     }
-
+    
     public IEnumerator Get(string url)
     {
         using(UnityWebRequest www = UnityWebRequest.Get(url))
@@ -41,6 +44,7 @@ public class ClientHttp : MonoBehaviour
                 if(www.isDone)
                 {
                     Debug.Log("Is Done!!");
+                    Debug.Log(www.downloadHandler.text);
                     ExampleSphere.position = gameObject.transform.position;
                     ExampleSphere.gameObject.SetActive(true);
                     ExampleSphere.GetComponent<Renderer>().material.color = Color.blue;
