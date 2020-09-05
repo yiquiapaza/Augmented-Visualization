@@ -6,15 +6,15 @@ using UnityEngine;
 [Serializable]
 public class Country 
 {
-    public int year;
-    public string region;
-    public int country_code;
-    public string name;
-    public string color;
-    public string continet;
-    public float population;
-    public float infant_mortality_rate;
-    public float life_expectance;
+    public int year { get; set; }
+    public string region { get; set; }
+    public int country_code { get; set; }
+    public string name { get; set; }
+    public string color { get; set; }
+    public string continet { get; set; }
+    public float population { get; set; }
+    public float infant_mortality_rate { get; set; }
+    public float life_expectance { get; set; }
 
     public Country(int year, string region, int country_code, string name, string color, string continet, float population, float infant_mortality_rate, float life_expectance)
     {
