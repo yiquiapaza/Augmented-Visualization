@@ -22,7 +22,7 @@ public class ClientHttp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(Get(url));
+        //StartCoroutine(Get(url));
     }
     
     public IEnumerator Get(string url)
