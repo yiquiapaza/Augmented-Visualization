@@ -13,4 +13,11 @@ public class Constants
     public const float MAX_SIZE_AXE_X = 1.0F;
     public const float MAX_SIZE_AXE_Y = 1.0F;
 
+    public const string CONTINET_SOUTH_AMERICA = "South America";
+    public const string CONTINET_AFRICA = "Africa";
+    public const string CONTINET_ASIA = "Asia";
+    public const string CONTINET_EUROPE = "Europe";
+    public const string CONTINET_MIDDLE_EAST = "Middle East";
+    public const string CONTINET_NORTH_AMERICA = "North America";
+    public const string CONTINET_OCEANIA = "Oceania";
 }

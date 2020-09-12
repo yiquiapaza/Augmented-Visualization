@@ -7,6 +7,7 @@ using UnityEngine;
 public class YearInfo 
 {
     public int year;
+    public bool state;
     
     public static YearInfo CreateFromJson(string jsonSring)
     {
