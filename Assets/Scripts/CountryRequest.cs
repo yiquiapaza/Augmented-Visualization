@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
+using Util;
 
 public class CountryRequest : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class CountryRequest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        countryList = CountryList.CreateCoutries().Where(country => country.name == CountryName).ToList();
+        //countryList = CountryList.CreateCoutries().Where(country => country.name == CountryName).ToList();
         StartCoroutine(GetColor(url));
         StartCoroutine(GetRequest(url));        
     }
@@ -34,16 +35,16 @@ public class CountryRequest : MonoBehaviour
 
     IEnumerator GetRequest(string url)
     {        
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(url + CountryName))
         {
             yield return webRequest.SendWebRequest();
             if (!webRequest.isNetworkError)
             {
                 if (webRequest.isDone)
                 {
-                    population = UtilScale.Ascale(countryList.Where(population => population.year == YearInfo.CreateFromJson(webRequest.downloadHandler.text).year).FirstOrDefault().population);
-                    life_expectance = UtilScale.Xscale(countryList.Where(population => population.year == YearInfo.CreateFromJson(webRequest.downloadHandler.text).year).FirstOrDefault().life_expectance);
-                    infant_mortality_rate = UtilScale.Xscale(countryList.Where(population => population.year == YearInfo.CreateFromJson(webRequest.downloadHandler.text).year).FirstOrDefault().infant_mortality_rate);
+                    population = UtilScale.Ascale(CountryInfo.CreateFromJson(webRequest.downloadHandler.text).population);
+                    life_expectance = UtilScale.Xscale(CountryInfo.CreateFromJson(webRequest.downloadHandler.text).life_expectance);
+                    infant_mortality_rate = UtilScale.Xscale(CountryInfo.CreateFromJson(webRequest.downloadHandler.text).infant_mortality_rate);
                     CountrySphere.transform.localPosition =  new Vector3(life_expectance, infant_mortality_rate, 0);
                     CountrySphere.transform.localScale = new Vector3(population, population, population);
                     yield break;
@@ -54,14 +55,14 @@ public class CountryRequest : MonoBehaviour
 
     IEnumerator GetColor(string url)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(url + CountryName))
         {
             yield return webRequest.SendWebRequest();
             if (!webRequest.isNetworkError)
             {
                 if (webRequest.isDone)
                 {                    
-                    CountrySphere.GetComponent<Renderer>().material.color = SetColor(countryList.FirstOrDefault().continet);
+                    CountrySphere.GetComponent<Renderer>().material.color = SetColor(CountryInfo.CreateFromJson(webRequest.downloadHandler.text).continet);
                     yield break;
                 }
             }

@@ -3,8 +3,12 @@
 
 using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.Utilities;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Microsoft.MixedReality.Toolkit.UI
 {
@@ -99,6 +103,12 @@ namespace Microsoft.MixedReality.Toolkit.UI
         [SerializeField]
         private Transform anchor = null;
 
+        [SerializeField]
+        private string Country = null;
+
+        [SerializeField]
+        private string url = null;
+
         private float focusEnterTime = 0f;
         private float focusExitTime = 0f;
         private float tappedTime = 0f;
@@ -108,7 +118,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
         public override void OnFocusEnter(FocusEventData eventData)
         {
             base.OnFocusEnter(eventData);
-
+            StartCoroutine(GetData(url));
             HandleFocusEnter();
         }
 
@@ -300,6 +310,36 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
                 await new WaitForUpdate();
             }
+        }
+
+
+        IEnumerator GetData (string url)
+        {
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(url + Country))
+            {
+                yield return webRequest.SendWebRequest();
+                if (!webRequest.isNetworkError)
+                {
+                    if (webRequest.isDone)
+                    {
+                        toolTipText = "Country: " + JsonUtility.FromJson<CountryInfo>(webRequest.downloadHandler.text).name
+                                    +   "\nPopulation: " + JsonUtility.FromJson<CountryInfo>(webRequest.downloadHandler.text).population
+                                    +   "\nLife Expectance: " + JsonUtility.FromJson<CountryInfo>(webRequest.downloadHandler.text).life_expectance
+                                    +   "\nInfant Mortality Rate: " + JsonUtility.FromJson<CountryInfo>(webRequest.downloadHandler.text).infant_mortality_rate;
+                        yield break;
+                    }
+                }
+            }
+        }
+        [Serializable]
+        public class CountryInfo
+        {
+            public int year;
+            public string name;
+            public float population;
+            public float infant_mortality_rate;
+            public float life_expectance;
+
         }
 
 #if UNITY_EDITOR
