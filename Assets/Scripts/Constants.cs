@@ -10,8 +10,8 @@ public class Constants
 
     public const float MAX_SIZE_SPHERE = 0.2F;
     public const float MIN_SIZE_SPHERE = 0.05F;
-    public const float MAX_SIZE_AXE_X = 1.0F;
-    public const float MAX_SIZE_AXE_Y = 1.0F;
+    public const float MAX_SIZE_AXE_X = 0.5F;
+    public const float MAX_SIZE_AXE_Y = 0.5F;
 
     public const string CONTINET_SOUTH_AMERICA = "South America";
     public const string CONTINET_AFRICA = "Africa";

@@ -44,8 +44,8 @@ public class CountryRequest : MonoBehaviour
                 {
                     population = UtilScale.Ascale(CountryInfo.CreateFromJson(webRequest.downloadHandler.text).population);
                     life_expectance = UtilScale.Xscale(CountryInfo.CreateFromJson(webRequest.downloadHandler.text).life_expectance);
-                    infant_mortality_rate = UtilScale.Xscale(CountryInfo.CreateFromJson(webRequest.downloadHandler.text).infant_mortality_rate);
-                    CountrySphere.transform.localPosition =  new Vector3(life_expectance, infant_mortality_rate, 0);
+                    infant_mortality_rate = UtilScale.Yscale(CountryInfo.CreateFromJson(webRequest.downloadHandler.text).infant_mortality_rate);
+                    CountrySphere.transform.localPosition =  new Vector3(0.5F + life_expectance, infant_mortality_rate - 0.25F, 0.3F);
                     CountrySphere.transform.localScale = new Vector3(population, population, population);
                     yield break;
                 }              

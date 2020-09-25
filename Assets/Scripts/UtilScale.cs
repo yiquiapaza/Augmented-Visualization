@@ -13,12 +13,12 @@ namespace Util
 
         public static float Xscale(float value)
         {
-            return (value * Constants.MAX_SIZE_AXE_X) / Constants.MAX_VALUE_LIFE_EXPECTANCE;
+            return (value * Constants.MAX_SIZE_AXE_X ) / Constants.MAX_VALUE_LIFE_EXPECTANCE ;
         }
 
         public static float Yscale(float value)
         {
-            return (value * Constants.MAX_SIZE_AXE_Y) / Constants.MAX_VALUE_INFANT_MORTALITY_RATE;
+            return (value * Constants.MAX_SIZE_AXE_Y ) / Constants.MAX_VALUE_INFANT_MORTALITY_RATE;
         }
     }
 
